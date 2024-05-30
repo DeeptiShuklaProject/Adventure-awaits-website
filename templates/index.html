@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+<main>
+        <section id="home" class="section">
+            <h2>Welcome to Adventure Awaits</h2>
+            <p>Your journey begins here. We offer unique adventure trips and experiences around the globe. From the peaks of the Himalayas to the depths of the Amazon rainforest, we have something for every adventurer.</p>
+        </section>
+        <section id="destinations" class="section">
+            <h2>Top Destinations</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="/static/images/destination1.jpg" alt="Destination 1">
+                    <h3>Himalayan Trekking</h3>
+                    <p>Experience the beauty and challenge of the Himalayas.</p>
+                </div>
+                <div class="card">
+                    <img src="/static/images/destination2.jpg" alt="Destination 2">
+                    <h3>Amazon Rainforest</h3>
+                    <p>Explore the dense and mysterious Amazon rainforest.</p>
+                </div>
+                <div class="card">
+                    <img src="/static/images/destination3.jpg" alt="Destination 3">
+                    <h3>Sahara Desert</h3>
+                    <p>Embark on a thrilling adventure in the vast Sahara Desert.</p>
+                </div>
+            </div>
+        </section>
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <img src="/static/images/gallery1.jpg" alt="Gallery Image 1">
+                <img src="/static/images/gallery2.jpg" alt="Gallery Image 2">
+                <img src="/static/images/gallery3.jpg" alt="Gallery Image 3">
+                <img src="/static/images/gallery4.jpg" alt="Gallery Image 4">
+            </div>
+        </section>
+        
+        <section id="services" class="section" >
+            <h2>What We Offer</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="/static/images/guidedtour.jpg" alt="Guided Tours">
+                    <h3>Guided Tours</h3>
+                    <p>Join our expert-led tours and explore new destinations with ease and safety.</p>
+                </div>
+                <div class="card">
+                    <img src="/static/images/equipmentrental.jpg" alt="Equipment Rental">
+                    <h3>Equipment Rental</h3>
+                    <p>Rent high-quality equipment for your adventures, from trekking gear to camping essentials.</p>
+                </div>
+                <div class="card">
+                    <img src="/static/images/travelplan.jpg" alt="Travel Planning">
+                    <h3>Travel Planning</h3>
+                    <p>Let us handle the logistics of your trip, so you can focus on enjoying your adventure.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="mission" class="section">
+            <h2>Our Mission</h2>
+            <p>At Adventure Awaits, our mission is to inspire and empower people to explore the world and discover new adventures. We believe that travel has the power to broaden horizons, foster personal growth, and create lasting memories.</p>
+        </section>
+        <section id="team" class="section">
+            <h2>Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="/static/images/team1.jpg" alt="Team Member 1" width="150" height="150">
+                    <h3>Deepti Shukla</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="/static/images/team2.jpg" alt="Team Member 2" width="150" height="150">
+                    <h3>Jane Smith</h3>
+                    <p>Head of Operations</p>
+                </div>
+                <div class="team-member">
+                    <img src="/static/images/team3.jpg" alt="Team Member 3" width="150" height="150">
+                    <h3>Emily Johnson</h3>
+                    <p>Marketing Manager</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <form>
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+                
+                
+ 
+ 
+            </form>
+        </section>
+
+        
+    </main>
+
+{% endblock %}
+
+
+
+
+
+    

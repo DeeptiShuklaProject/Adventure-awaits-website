@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to right, #2575fc, #2575fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #333;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 20px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        margin-right: 10px;
+    }
+    .gender, .hobbies {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    button {
+        width: 100%;
+        background-color: #6a11cb;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #2575fc;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+    <main>
+        <section id="saveevenodd" class="section">
+            <h2>Even-Odd</h2>
+            
+            <form method="post">
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    please enter the value
+                </div>
+                {% endif %}
+                {% csrf_token %}
+                {{form}}
+                
+                    <label for="">value1</label>
+                    <input type="text" name="num1" value="{{n1}}" class="form-control"/>
+                    
+                
+                     <button type="submit">Even|odd</button></br>
+                     <label>Output</label>
+               
+                     <input type="text" value="{{result}}" class="form-control"/>
+
+            </form>
+                
+        </section>
+
+    </main>
+
+{% endblock %}
