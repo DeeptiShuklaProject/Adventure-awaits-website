@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+            <section class="section-gap info-area" id="news" style="padding-top: 100px;">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="menu-content pb-40 col-lg-6">
+                            <div class="title text-center">
+                                <h1 class="mb-5">{{newsDetails.news_title}}</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-ingo row">
+                   
+                    
+                        <div class="col-lg-6 col-md-12">
+                            <div class = "bg-white p-5">
+                                {{newsDetails.news_desc | safe }}
+                            </div> 
+
+                             <div class="col-6">
+                                {%if newsDetails.news_image != NULL %}
+
+                                <img src="/media/{{newsDetails.news_image }}" class="img-fluid">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </section>
+
+
+
+
+
+
+
+{% endblock %}

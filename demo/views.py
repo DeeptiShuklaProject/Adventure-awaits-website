@@ -1,11 +1,55 @@
+from django.core import paginator
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .forms import usersforms
+from service.models import Service
+from news.models import News
+from django.core.paginator import Paginator
+from contactenquiry.models import contactEnquiry
+from django.core.mail import send_mail,EmailMultiAlternatives
+
+
+
+
 import math
 
 def homePage(request):
+    subject='Testing Mail'
+    form_email='shukladeepti293@gmail.com'
+    msg='<p>Welcome to <b>Adventure Awaits</b></b>'
+    to='deeptishukla515@gmail.com'
+    msg=EmailMultiAlternatives(subject,msg,form_email,[to])
+    msg.content_subtype='html'
+    msg.send()
+    # send_mail(
+    #     'Testing Mail',
+    #     'Here is the message.',
+    #     'shukladeepti293@gmail.com',
+    #     ['deeptishukla515@gmail.com'],
+    #     fail_silently=False,
+    # )
 
-    return render(request,"index.html")
+
+
+    newsData=News.objects.all();
+    servicesData=Service.objects.all().order_by('-service_title')[:4]
+    # for a in servicesData:
+    #     print(a.service_icon)
+    # print(services)
+
+    data={
+        'newsData':newsData,
+        'servicesData':servicesData
+    }
+    return render(request,"index.html",data)
+
+def newsDetails(request,slug):
+    newsDetails=News.objects.get(news_slug=slug)
+    data={
+        'newsDetails':newsDetails
+    }
+    return render(request,"newsdetails.html",data)
+
 
 def submitform(request):
 
@@ -37,8 +81,50 @@ def aboutUs(request):
 def contact(request):
     return render(request,"contact.html")
 
+def saveEnquiry(request):
+
+    n=''
+
+    if request.method=="POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        message=request.POST.get('message')
+        en=contactEnquiry(name=name,email=email,message=message)
+        en.save()
+        n='Thank you for your message!'
+
+    return render(request,"contact.html",{'n' :n})
+
+    
 def services(request):
-    return render(request,"services.html")
+    ServicesData=Service.objects.all()
+    paginator=Paginator(ServicesData,2)
+    page_number=request.GET.get('page')
+    ServiceDataFinal=paginator.get_page(page_number)
+    totalpage=ServiceDataFinal.paginator.num_pages  #3
+    data={
+        'servicesData':ServiceDataFinal,
+        'lastpage':totalpage,
+        'totalPagelist':[n+1 for n in range (totalpage)]
+    }
+    
+    
+    
+    
+    
+    
+    # filter  option
+    
+    # if request.method=="GET":
+    #     st=request.GET.get('servicename')
+    #     if st!=None:
+    #         servicesData=Service.objects.filter(service_title__icontains=st)
+
+    # data={
+    #     'servicesData':servicesData,
+    # }
+    return render(request,"services.html",data)
+    
 
 def destinations(request):
     return render(request,"destinations.html")

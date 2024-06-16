@@ -4,16 +4,23 @@
 
 
     <main>
+        <div>{{n}}</div>
         <section id="contact-form" class="section">
+            
             <h2>Get in Touch</h2>
-            <form>
+            <form method="post" action="{% url 'saveenquiry' %}" id="contact-form" role="form" novalidate="novalidate" class="bv-form">
+                {% csrf_token %}
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input class="form-control" type="text" name="name" id="name" value="" required="" placeholder="Name" class="name" data-error="leave a message">
+                
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input class="form-control" type="text" name="email" id="email" value="" required="" placeholder="email" class="email" data-error="leave a message">
+                
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
+                <input class="form-control" type="text" name="message" id="message" value="" required="" placeholder="message" class="message" data-error="leave a message">
+                
+                
+                <button type="submit" name="save" value="submit" class="submit" >Send Message</button>
             </form>
         </section>
         <section id="contact-info" class="section">

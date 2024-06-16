@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+</br>
+<marquee onmouseover="stop()" onmouseout="start()">
+    Welcome to Adventure Awaits  &nbsp; &nbsp; &nbsp; &nbsp;
+    {% for news in newsData %}
+    
+    <a href="/newsdetails/{{news.news_slug}}">  {{news.news_title}} </a> &nbsp; &nbsp; &nbsp; &nbsp;
+
+    {% endfor %}
+</marquee>
 
 
 
@@ -59,7 +68,25 @@
                     <h3>Travel Planning</h3>
                     <p>Let us handle the logistics of your trip, so you can focus on enjoying your adventure.</p>
                 </div>
+                    {% for n in serviceData %}
+
+                    <div class="col-lg-4 col-md-6 ">
+                        <div class="single-feature mb-30">
+                            <div class ="title d-flex flex-row pb-20">
+                                <span class="{{n.service_icon}}"></span>
+                                <h4><a href="#">{{n.service_title}}</a></h4>
+
+                            </div>
+                            <p>
+                                {{n.service_des | lower | safe }}  
+                            </p>
+
+                        </div>
+                    </div>
+                    {% endfor %}
             </div>
+
+
         </section>
 
 

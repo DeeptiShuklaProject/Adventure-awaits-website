@@ -3,44 +3,158 @@
 {% block content %}
 
 
-    <main>
+<main>
+
+
         <section id="services" class="section" >
-            <h2>What We Offer</h2>
-            <div class="cards">
-                <div class="card">
-                    <img src="/static/images/guidedtour.jpg" alt="Guided Tours">
-                    <h3>Guided Tours</h3>
-                    <p>Join our expert-led tours and explore new destinations with ease and safety.</p>
+            <div class="row">
+                <div class="col-12">
+                    <form method="get">
+                        <input type="text" name="servicename" valur=""/>
+                        <input type="submit" value="search"/>
+                    </form>
                 </div>
-                <div class="card">
-                    <img src="/static/images/equipmentrental.jpg" alt="Equipment Rental">
-                    <h3>Equipment Rental</h3>
-                    <p>Rent high-quality equipment for your adventures, from trekking gear to camping essentials.</p>
-                </div>
-                <div class="card">
-                    <img src="/static/images/travelplan.jpg" alt="Travel Planning">
-                    <h3>Travel Planning</h3>
-                    <p>Let us handle the logistics of your trip, so you can focus on enjoying your adventure.</p>
-                </div>
-            </div>
-        </section>
-        <section id="testimonials" class="section">
-            <h2>Testimonials</h2>
-            <div class="testimonials">
-                <div class="testimonial">
-                    <p>"The guided tour was fantastic! Our guide was knowledgeable and the scenery was breathtaking."</p>
-                    <h4>- Jane Doe</h4>
-                </div>
-                <div class="testimonial">
-                    <p>"Renting equipment was a breeze, and everything was top-notch quality. Highly recommend!"</p>
-                    <h4>- John Smith</h4>
-                </div>
-                <div class="testimonial">
-                    <p>"The travel planning service made our trip so much smoother. We didn't have to worry about a thing."</p>
-                    <h4>- Emily Johnson</h4>
-                </div>
-            </div>
-        </section>
-    </main>
+
+               
+
+                            {% for n in servicesData %}
+        
+                            <div class="col-lg-4 col-md-6 ">
+                                <div class="single-feature mb-30">
+                                    <div class ="title d-flex flex-row pb-20">
+                                        <span class="{{n.service_icon}}"></span>
+                                        <h4><a href="#">{{n.service_title}}</a></h4>
+        
+                                    </div>
+                                    <p>
+                                        {{n.service_des | lower | safe }}  
+                                    </p>
+        
+                                </div>
+                            </div>
+
+                            {% empty %}
+                            No Data Found
+                            {% endfor %}
+
+
+                    </div>
+                    <style>
+                      /* Pagination Container */
+                      .pagination {
+                          display: flex;
+                          padding-left: 0;
+                          list-style: none;
+                          border-radius: 0.25rem;
+                      }
+              
+                      /* Pagination Item */
+                      .page-item {
+                          margin: 0 10px;
+                      }
+
+                              /* Pagination Link */
+                .page-link {
+                  position: relative;
+                  display: block;
+                  padding: 0.5rem 0.75rem;
+                  margin-left: -1px;
+                  line-height: 1.25;
+                  color: #007bff;
+                  background-color: #fff;
+                  border: 1px solid #dee2e6;
+                  text-decoration: none;
+                  border-radius: 0.25rem;
+                  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+              }
+
+              /* Hover and Focus States */
+              .page-link:hover, .page-link:focus {
+                  z-index: 2;
+                  color: #0056b3;
+                  text-decoration: none;
+                  background-color: #e9ecef;
+                  border-color: #dee2e6;
+              }
+
+              /* Active Page */
+              .page-item.active .page-link {
+                  z-index: 1;
+                  color: #fff;
+                  background-color: #007bff;
+                  border-color: #007bff;
+              }
+
+              /* Disabled Page */
+              .page-item.disabled .page-link {
+                  color: #6c757d;
+                  pointer-events: none;
+                  background-color: #fff;
+                  border-color: #dee2e6;
+              }
+              </style>
+              
+
+
+                    <div aria-label="...">
+                      <ul class="pagination">
+                          {% if servicesData.has_previous %}
+                        <li class="page-item">
+                          <a class="page-link" href="/services/?page=1" tabindex="-1">First</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="/services/?page={{servicesData.previous_page_number}}" tabindex="-1">previous</a>
+                        </li>
+                        {% endif %}
+
+                        {% for n in totalPagelist%}
+                        <li class="page-item"><a class="page-link" href="/services/?page={{n}}">{{n}}</a>
+                        </li>
+                        {% endfor %}
+
+                        {% if servicesData.has_next %}
+                        
+                        <li class="page-item">
+                          <a class="page-link" href="/services/?page={{servicesData.next_page_number}}">Next</a>
+                          
+                        </li>
+
+                        <li class="page-item">
+                          <a class="page-link" href="/services/?page={{lastpage}}">Last</a>
+                          
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+
+
+
+                    <h2>What We Offer</h2>
+                    <div class="cards">
+                        <div class="card">
+                            <img src="/static/images/guidedtour.jpg" alt="Guided Tours">
+                            <h3>Guided Tours</h3>
+                            <p>Join our expert-led tours and explore new destinations with ease and safety.</p>
+                        </div>
+                        <div class="card">
+                            <img src="/static/images/equipmentrental.jpg" alt="Equipment Rental">
+                            <h3>Equipment Rental</h3>
+                            <p>Rent high-quality equipment for your adventures, from trekking gear to camping essentials.</p>
+                        </div>
+                        <div class="card">
+                            <img src="/static/images/travelplan.jpg" alt="Travel Planning">
+                            <h3>Travel Planning</h3>
+                            <p>Let us handle the logistics of your trip, so you can focus on enjoying your adventure.</p>
+                        </div>
+
+
+                        
+        
+        
+               
+        </main>
+        
+    
+
 
 {% endblock %}
